@@ -1,0 +1,34 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:10.5
+    ports:
+    - "25432:5432" # this is optional
+    environment:
+      POSTGRES_PASSWORD: af0NdbTLlEj6lrWpcLHA
+      POSTGRES_USER: dbuser
+      POSTGRES_DB: book
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+    - "30080:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@localhost.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+  web:
+    build:
+      context: ..
+      dockerfile: Dockerfile.fullBuild
+    ports:
+    - "8080:80"
+    restart: on-failure
+    environment:
+      WEB_DB_CONN: "Host=postgres;Database=book;Username=dbuser;Password=af0NdbTLlEj6lrWpcLHA"
+      DEMO_AUTH: dockerAuth
+    links:
+    - postgres
+    depends_on:
+    - postgres
+      
+    
+      
