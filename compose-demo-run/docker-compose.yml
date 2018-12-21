@@ -8,6 +8,11 @@ services:
       POSTGRES_PASSWORD: af0NdbTLlEj6lrWpcLHA
       POSTGRES_USER: dbuser
       POSTGRES_DB: book
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dbuser -d book"]
+      interval: 10s
+      timeout: 5s
+      retries: 5      
   pgadmin:
     image: dpage/pgadmin4
     ports:
