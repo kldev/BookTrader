@@ -8,7 +8,7 @@ namespace BookTrader.Data.Util
 {
     public static class DatabaseSeedUtil
     {
-        private static Random rand = new Random();
+        private static readonly Random _random = new Random();
         
         /// <summary>
         /// Delete all table data
@@ -43,7 +43,7 @@ namespace BookTrader.Data.Util
         /// </summary>
         /// <param name="traderId"></param>
         /// <returns></returns>
-        private static List<Book> createTraderBooks(string traderId){
+        private static List<Book> CreateTraderBooks(string traderId){
         
             var authors = new String[] {"First Author", "Second Author", "Third Author" };
             var books = new List<Book>();
@@ -55,11 +55,11 @@ namespace BookTrader.Data.Util
                 books.Add(new Book
                 {
                     Id = bookId,
-                    SoldCount = rand.Next(10, 100),        
-                    Price = 0.25M*rand.Next(10,50),
-                    Added = DateTime.Now.AddDays(-1 * rand.Next(1, 31)),
+                    SoldCount = _random.Next(10, 100),        
+                    Price = 0.25M*_random.Next(10,50),
+                    Added = DateTime.Now.AddDays(-1 * _random.Next(1, 31)),
                     Title = "The book title: " + bookId,
-                    Author = authors[rand.Next(0, authors.Length-1)], 
+                    Author = authors[_random.Next(0, authors.Length-1)], 
                     TraderId =  traderId,
                 });
             }
@@ -72,7 +72,7 @@ namespace BookTrader.Data.Util
             using (var context = new BookTraderContext())
             {
                 var traderGuid = Guid.NewGuid().ToString("N");
-                var bookList = createTraderBooks(traderGuid);
+                var bookList = CreateTraderBooks(traderGuid);
 
                 var trader = new Trader
                 {

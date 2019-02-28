@@ -22,7 +22,7 @@ namespace BookTrader.Web.Controllers
             
             if (string.IsNullOrWhiteSpace(request.Auth)) return new ApiResponse<MessageResponse>(ErrorResponse.UnauthorizedAccess);
 
-            String demoAuth = EnvironmentUtil.GetEnv("DEMO_AUTH");
+            var demoAuth = EnvironmentUtil.GetEnv("DEMO_AUTH");
             
             if (string.IsNullOrWhiteSpace( demoAuth )) return new ApiResponse<MessageResponse>(ErrorResponse.DemoAuthNotSetup);
 

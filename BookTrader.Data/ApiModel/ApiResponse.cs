@@ -34,7 +34,7 @@ namespace BookTrader.Data.ApiModel
         }
 
         /// <remarks/>
-        public T Result { get; set; }
+        public T Result { get; }
 
         /// <remarks/>
         public ErrorResponse Error { get; set; }

@@ -9,7 +9,7 @@ namespace BookTrader.Data
 {
     public class BookTraderContext : DbContext
     {
-        public static string DEFAULT_CONNECTION_STRING = @"Host=localhost;Database=book;Username=postgres;Password=postgres";
+        private static string DEFAULT_CONNECTION_STRING = @"Host=localhost;Database=book;Username=postgres;Password=postgres";
         
         public virtual DbSet<Trader> Traders { get; set; }
         public virtual DbSet<Book> Books { get; set; }

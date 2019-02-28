@@ -11,7 +11,7 @@ namespace BookTrader.Web.Controllers
     [ApiController]
     public class TraderController
     {
-        private ITraderRepository _traderRepository;
+        private readonly ITraderRepository _traderRepository;
         
         public TraderController(ITraderRepository repository)
         {
@@ -22,7 +22,7 @@ namespace BookTrader.Web.Controllers
         [Route("/api/trader/list")]
         public async Task<ApiResponse<List<Trader>>> GetAll()
         {
-            List<Trader> traders = await _traderRepository.GetListAsync();
+            var traders = await _traderRepository.GetListAsync();
             
             return new ApiResponse<List<Trader>>(traders);
         }

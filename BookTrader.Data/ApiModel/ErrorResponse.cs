@@ -3,7 +3,7 @@ using System;
 namespace BookTrader.Data.ApiModel
 {
     /// <summary>
-    /// The error response with code that can be transleted in SPA client like vuejs or Angular
+    /// The error response with code that can be translated in SPA client like VueJS or Angular
     /// </summary>
     public class ErrorResponse
     {
@@ -12,7 +12,7 @@ namespace BookTrader.Data.ApiModel
         public ErrorResponse() {  }
 
         /// <remarks/>
-        public ErrorResponse(string code, string message)
+        private ErrorResponse(string code, string message)
         {
             Code = code;
             Message = message;
@@ -24,7 +24,7 @@ namespace BookTrader.Data.ApiModel
         public string Code { get; set; }
 
         /// <summary>
-        /// the errror message
+        /// the error message
         /// </summary>
         public string Message { get; set; }
         
@@ -43,9 +43,9 @@ namespace BookTrader.Data.ApiModel
         public static ErrorResponse UnauthorizedAccess =>
             new ErrorResponse("unauthorized.access", "unauthorized access");
 
-        public static ErrorResponse fieldCanNotBeNullOrEmpty(String field)
+        public static ErrorResponse FieldCanNotBeNullOrEmpty(String field)
         {
-            return new ErrorResponse(field + ".null.or.empty", string.Format("{0} field can not be null or empty", field));
+            return new ErrorResponse(field + ".null.or.empty", $"{field} field can not be null or empty");
         }
         
         public static ErrorResponse DemoAuthNotSetup =>
