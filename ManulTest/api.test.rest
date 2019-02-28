@@ -1,0 +1,33 @@
+@authToken = mJ1r6FGXBR7IsJp5fXqrunu5
+@url = https://localhost:5001
+
+### Seed Database
+
+POST {{url}}/api/demo/seed
+Content-Type: application/json
+
+{
+    "auth": "{{authToken}}"
+}
+
+### List Traders
+
+GET {{url}}/api/trader/list 
+Content-Type: application/json
+
+### Get Book List
+POST {{url}}/api/book/list
+Content-Type: application/json
+
+{
+    "id": "1fcda6dbb1bd45d3af56cbd3cb47d0b6"
+}
+
+
+### Get Book By Id
+POST {{url}}/api/book/single
+Content-Type: application/json
+
+{
+    "id": "79c72ef4170c4cd28e2945fbde74db84"   
+}

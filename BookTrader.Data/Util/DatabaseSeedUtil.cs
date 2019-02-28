@@ -22,9 +22,8 @@ namespace BookTrader.Data.Util
                 foreach (var table in tables)
                 {
                     try
-                    {
-                        string command = $"DELETE FROM {table} CASCADE ";
-                        context.Database.ExecuteSqlCommand(command);
+                    {                        
+                        context.Database.ExecuteSqlCommand($"DELETE FROM {table} CASCADE ");
                     }
                     catch (Exception ex)
                     {

@@ -10,9 +10,9 @@ namespace BookTrader.Data.Service
         private readonly IBookRepository _bookRepository;
         private readonly ITraderRepository _traderRepository;
 
-        public BookTraderService()
+        public BookTraderService(BookTraderContext context)
         {
-            _bookRepository = new BookRepository();
+            _bookRepository = new BookRepository(context);
             _traderRepository = new TraderRepository();
         }
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BookTrader.Data;
 using BookTrader.Data.Repository;
+using BookTrader.Data.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,8 +32,9 @@ namespace BookTrader.Web
         {
             
             services.AddDbContext<BookTraderContext>();
-            services.AddSingleton<IBookRepository>(new BookRepository());
-            services.AddSingleton<ITraderRepository>(new TraderRepository());
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<ITraderRepository, TraderRepository>();
+            services.AddScoped<BookTraderService>();
             
             services.AddMvcCore().AddApiExplorer();
             services.AddSwaggerGen(c =>
