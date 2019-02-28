@@ -13,7 +13,7 @@ namespace BookTrader.Data.Service
         public BookTraderService(BookTraderContext context)
         {
             _bookRepository = new BookRepository(context);
-            _traderRepository = new TraderRepository();
+            _traderRepository = new TraderRepository(context);
         }
 
         public BookTraderService(IBookRepository bookRepository, ITraderRepository traderRepository)

@@ -4,6 +4,7 @@ using BookTrader.Data;
 using BookTrader.Data.Model;
 using BookTrader.Data.Repository;
 using BookTrader.Data.Util;
+using Faker;
 using Xunit;
 
 namespace BookTrader.Test.Repository
@@ -11,7 +12,7 @@ namespace BookTrader.Test.Repository
     
     public class TraderRepositoryTests
     {
-        private readonly TraderRepository _traderRepository = new TraderRepository();
+        private readonly TraderRepository _traderRepository = new TraderRepository(new BookTraderContext(TestHelper.TEST_CONNECTION_STRING));
        
         [Fact]
         public void CanReturnTraders()
@@ -29,7 +30,7 @@ namespace BookTrader.Test.Repository
                 context.SaveChanges();
             }
 
-            List<Trader> list = _traderRepository.GetAll();
+            List<Trader> list = _traderRepository.GetListAsync().Result;
             
             Assert.True(list.Count == 5);
 
@@ -42,7 +43,7 @@ namespace BookTrader.Test.Repository
             
             DatabaseSeedUtil.SeedData();
             
-            List<Trader> list = _traderRepository.GetAll();
+            List<Trader> list = _traderRepository.GetListAsync().Result;
             
             Assert.True(list.Count == 1);
         }
@@ -52,9 +53,9 @@ namespace BookTrader.Test.Repository
             return new Trader()
             {
                 Id = Guid.NewGuid().ToString("N"),
-                Lastname = Faker.Name.Last(),
-                Name = Faker.Name.First(),
-                Password = Faker.RandomNumber.Next().ToString(),EMail = $"{Faker.Name.First().ToLower()}@ygmail.com"
+                Lastname = Name.Last(),
+                Name = Name.First(),
+                Password = RandomNumber.Next().ToString(),EMail = $"{Name.First().ToLower()}@ygmail.com"
             };
         }
     }

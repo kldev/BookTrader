@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BookTrader.Data.Model;
 
 namespace BookTrader.Data.Repository
 {
     public interface ITraderRepository
     {
-        List<Trader> GetAll();
+        Task<List<Trader>> GetListAsync();
     }
 }

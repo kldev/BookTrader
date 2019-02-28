@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BookTrader.Data.ApiModel;
 using BookTrader.Data.Model;
 using BookTrader.Data.Repository;
@@ -19,9 +20,9 @@ namespace BookTrader.Web.Controllers
         
         [HttpGet]
         [Route("/api/trader/list")]
-        public ApiResponse<List<Trader>> GetAll()
+        public async Task<ApiResponse<List<Trader>>> GetAll()
         {
-            List<Trader> traders = _traderRepository.GetAll();
+            List<Trader> traders = await _traderRepository.GetListAsync();
             
             return new ApiResponse<List<Trader>>(traders);
         }
